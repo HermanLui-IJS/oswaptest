@@ -1,0 +1,38 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Token
+    network: bsc
+    source:
+      address: "0xb32ac3c79a94ac1eb258f3c830bbdbc676483c93"
+      abi: Token
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Authorize
+        - Deauthorize
+        - StartOwnershipTransfer
+        - Transfer
+        - TransferOwnership
+      abis:
+        - name: Token
+          file: ./abis/Token.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Authorize(address)
+          handler: handleAuthorize
+        - event: Deauthorize(address)
+          handler: handleDeauthorize
+        - event: StartOwnershipTransfer(address)
+          handler: handleStartOwnershipTransfer
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: TransferOwnership(address)
+          handler: handleTransferOwnership
+      file: ./src/mapping.ts

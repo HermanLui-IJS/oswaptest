@@ -1,0 +1,33 @@
+type Approval @entity {
+  id: ID!
+  owner: Bytes! # address
+  spender: Bytes! # address
+  value: BigInt! # uint256
+}
+
+type Authorize @entity {
+  id: ID!
+  user: Bytes! # address
+}
+
+type Deauthorize @entity {
+  id: ID!
+  user: Bytes! # address
+}
+
+type StartOwnershipTransfer @entity {
+  id: ID!
+  user: Bytes! # address
+}
+
+type Transfer @entity {
+  id: ID!
+  from: Bytes! # address
+  to: Bytes! # address
+  value: BigInt! # uint256
+}
+
+type TransferOwnership @entity {
+  id: ID!
+  user: Bytes! # address
+}
